@@ -1,15 +1,51 @@
 import './App.css';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
 
 function App() {
-  const [recipe, setRecipe] = useState('');
+  const [recipe, setRecipe] = useState(null);
+  const [search, setSearch] = useState('');
 
-  function handleChange(event) {
-    event.preventDefault();
-    setRecipe(event.target.value);
+  // useEffect(() => {
+  //   getRecipe().then((response) => {
+  //     if (response) setRecipe(response);
+  //   });
+  // }, [setRecipe]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
+  //       {
+  //         params: {
+  //           query: 'pasta',
+  //           cuisine: 'italian',
+  //           excludeCuisine: 'greek',
+  //           diet: 'vegetarian',
+  //         },
+  //         headers: {
+  //           'X-RapidAPI-Key':
+  //             '6a14de4532msh62d6c9ee2479456p10a986jsn21992a974a79',
+  //           'X-RapidAPI-Host':
+  //             'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+  //         },
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setRecipe(response.data.results);
+  //       console.log(response.data.results);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, []);
+
+  function handleChange(e) {
+    e.preventDefault();
+    setSearch(e.target.value);
   }
 
   function getRecipe() {
@@ -17,7 +53,7 @@ function App() {
       method: 'GET',
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
       params: {
-        query: 'pasta',
+        query: search,
         cuisine: 'italian',
         excludeCuisine: 'greek',
         diet: 'vegetarian',
