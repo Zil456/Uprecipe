@@ -4,7 +4,6 @@ import '../App.css';
 
 export default function RecipeList({ recipeData }) {
   console.log('RecipeList below:');
-  console.log(recipeData[0].title);
 
   return (
     <div className='recipe-list'>

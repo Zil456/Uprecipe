@@ -10,18 +10,25 @@
   flex-direction: column;
   background-color: white;
   margin: 10px;
+  padding: 10px;
 }
 
 input {
   margin-bottom: 10px;
   font-size: 1.2rem;
   text-align: center;
+  border-radius: 10px;
+}
+
+input:hover {
+  background-color: rgb(240, 245, 245);
 }
 .search-button {
   width: 100%;
   background-color: rgb(45, 111, 111);
   color: white;
   font-size: 1.2rem;
+  border-radius: 10px;
 }
 button:hover {
   cursor: pointer;
@@ -47,21 +54,14 @@ button:hover {
 }
 .recipe-title {
   color: rgb(45, 111, 111);
+  font-style: italic;
 }
-
-/* .recipe-list {
-  display: flex;
-
-  background-color: aqua;
-  margin: 2rem 0 1rem 0;
-} */
 
 ul {
   list-style-type: none;
   padding: 0;
-  /* background-color: aqua; */
   display: flex;
-  flex-wrap: wrap; /*here we wrap the list items to the next line*/
+  flex-wrap: wrap;
 }
 
 .explore-recipe {
@@ -72,15 +72,18 @@ ul {
   border-radius: 10px;
   border-color: rgb(45, 111, 111);
   margin: 10px;
-  width: 100%;
+  width: 95%;
+  text-decoration: none;
+  text-align: center;
+  font-style: italic;
 }
 .explore-recipe:hover {
   cursor: pointer;
 }
 .recipe-img {
   width: 100%;
-
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 1140px) {

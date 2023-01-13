@@ -20,29 +20,20 @@ function App() {
   function getRecipe() {
     const options = {
       method: 'GET',
-      url: 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-      params: {
-        query: search,
-        cuisine: 'italian',
-        excludeCuisine: 'greek',
-        diet: 'vegetarian',
-      },
+      url: 'https://edamam-recipe-search.p.rapidapi.com/search',
+      params: { q: search },
       headers: {
         'X-RapidAPI-Key': '6a14de4532msh62d6c9ee2479456p10a986jsn21992a974a79',
-        'X-RapidAPI-Host':
-          'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+        'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com',
       },
     };
 
     axios
       .request(options)
       .then(function (response) {
-        console.log(response.data);
-        setRecipe(response.data.results);
-        console.log(response.data);
-        //console log the nutrition
-
-        console.log(response.data.results[0].nutrition);
+        console.log(response.data.hits);
+        setRecipe(response.data.hits);
+        console.log('search below:');
       })
       .catch(function (error) {
         console.error(error);
