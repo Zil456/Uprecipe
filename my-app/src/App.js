@@ -8,40 +8,9 @@ function App() {
   const [recipe, setRecipe] = useState(null);
   const [search, setSearch] = useState('');
 
-  // useEffect(() => {
-  //   getRecipe().then((response) => {
-  //     if (response) setRecipe(response);
-  //   });
-  // }, [setRecipe]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch',
-  //       {
-  //         params: {
-  //           query: 'pasta',
-  //           cuisine: 'italian',
-  //           excludeCuisine: 'greek',
-  //           diet: 'vegetarian',
-  //         },
-  //         headers: {
-  //           'X-RapidAPI-Key':
-  //             '6a14de4532msh62d6c9ee2479456p10a986jsn21992a974a79',
-  //           'X-RapidAPI-Host':
-  //             'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       console.log(response.data);
-  //       setRecipe(response.data.results);
-  //       console.log(response.data.results);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    getRecipe();
+  }, []);
 
   function handleChange(e) {
     e.preventDefault();
@@ -70,7 +39,10 @@ function App() {
       .then(function (response) {
         console.log(response.data);
         setRecipe(response.data.results);
-        console.log(response.data.results);
+        console.log(response.data);
+        //console log the nutrition
+
+        console.log(response.data.results[0].nutrition);
       })
       .catch(function (error) {
         console.error(error);
@@ -79,19 +51,17 @@ function App() {
 
   return (
     <div className='App'>
-      <div className='first'>
+      <div className='search'>
         <input
           type='text'
           placeholder='Enter recipe name'
           onChange={handleChange}
         />
-        <button onClick={getRecipe}>Search</button>
-        {recipe ? (
-          <p>
-            <RecipeList recipeData={recipe} />
-          </p>
-        ) : null}
+        <button className='search-button' onClick={getRecipe}>
+          Search
+        </button>
       </div>
+      {recipe ? <RecipeList recipeData={recipe} /> : null}
     </div>
   );
 }
