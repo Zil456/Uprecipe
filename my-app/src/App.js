@@ -3,6 +3,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
+import Nav from './components/Nav';
 
 function App() {
   const [recipe, setRecipe] = useState(null);
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <div className='App'>
+      <Nav />
       <div className='search'>
         <input
           type='text'
@@ -52,7 +54,7 @@ function App() {
           Search
         </button>
       </div>
-      {recipe ? <RecipeList recipeData={recipe} /> : null}
+      {recipe ? <RecipeList recipeData={recipe} search={search} /> : null}
     </div>
   );
 }
