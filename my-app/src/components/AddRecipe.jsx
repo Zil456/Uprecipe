@@ -15,7 +15,6 @@ function AddRecipe() {
       return;
     }
     const response = await createRecipe({
-      // this is the book object. In ApiService.js we have a function called createBook that takes in a book object as a parameter and it is named as bookObj in the function. So we are passing in the book object that we created here.
       name: name,
       ingredients: ingredients,
       instructions: instructions,
