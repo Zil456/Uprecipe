@@ -4,14 +4,23 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import RecipeList from './components/RecipeList';
 import Nav from './components/Nav';
+import AddRecipe from './components/AddRecipe';
+import Footer from './components/Footer';
+import OwnRecipeList from './components/OwnRecipeList';
+import { fetchRecipes } from './ApiService';
 
 function App() {
   const [recipe, setRecipe] = useState(null);
   const [search, setSearch] = useState('');
+  const [ownRecipes, setOwnRecipes] = useState([]);
 
   useEffect(() => {
-    getRecipe();
-  }, []);
+    // getRecipe();
+
+    fetchRecipes().then((data) => {
+      setOwnRecipes(data);
+    });
+  }, [ownRecipes]);
 
   function handleChange(e) {
     e.preventDefault();
@@ -24,7 +33,7 @@ function App() {
       url: 'https://edamam-recipe-search.p.rapidapi.com/search',
       params: { q: search },
       headers: {
-        'X-RapidAPI-Key': '6a14de4532msh62d6c9ee2479456p10a986jsn21992a974a79',
+        'X-RapidAPI-Key': '2e30f99244msh0d636616df73d91p17c681jsncc8c7d07a70a',
         'X-RapidAPI-Host': 'edamam-recipe-search.p.rapidapi.com',
       },
     };
@@ -41,6 +50,10 @@ function App() {
       });
   }
 
+  //-------------OWN RECIPE PART----------------
+
+  //-------------OWN RECIPE PART END----------------
+
   return (
     <div className='App'>
       <Nav />
@@ -55,6 +68,8 @@ function App() {
         </button>
       </div>
       {recipe ? <RecipeList recipeData={recipe} search={search} /> : null}
+      <AddRecipe />
+      <OwnRecipeList ownRecipesSorted={ownRecipes} />
     </div>
   );
 }
