@@ -6,7 +6,6 @@ function AddRecipe() {
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState('');
   const [instructions, setInstructions] = useState('');
-  // const [image, setImage] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,20 +17,12 @@ function AddRecipe() {
       name: name,
       ingredients: ingredients,
       instructions: instructions,
-      // image: image,
     });
-    //console.log(response);
 
     setName('');
     setIngredients('');
     setInstructions('');
-    // setImage('');
   };
-
-  // function handleImage(e) {
-  //   console.log(e.target.files[0]);
-  //   setImage(e.target.files[0]);
-  // }
 
   return (
     <div className='form-outer'>
@@ -41,7 +32,7 @@ function AddRecipe() {
         <div className='form-inputs'>
           <div className='field'>
             <label>
-              name: <br />
+              Name: <br />
             </label>
             <input
               type='text'
@@ -49,34 +40,29 @@ function AddRecipe() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className='field'>
-            <label>
-              ingredients: <br />
-            </label>
-            <input
-              type='text'
-              value={ingredients}
-              onChange={(e) => setIngredients(e.target.value)}
-            />
+          <div className='add-recipe-ingr-inst'>
+            <div className='field'>
+              <label>
+                Ingredients: <br />
+              </label>
+              <textarea
+                type='text'
+                value={ingredients}
+                onChange={(e) => setIngredients(e.target.value)}
+              />
+            </div>
+            <div className='field'>
+              <label>
+                Instructions:
+                <br />
+              </label>
+              <textarea
+                type='text'
+                value={instructions}
+                onChange={(e) => setInstructions(e.target.value)}
+              />
+            </div>
           </div>
-          <div className='field'>
-            <label>
-              instructions:
-              <br />
-            </label>
-            <input
-              type='text'
-              value={instructions}
-              onChange={(e) => setInstructions(e.target.value)}
-            />
-          </div>
-          {/* <div className='own-recipe-img'>
-            <input
-              type='file'
-              // onChange={handleImage}
-            />
-            <button>Upload</button>
-          </div> */}
 
           <button className='add-recipe-btn' type='submit'>
             CREATE

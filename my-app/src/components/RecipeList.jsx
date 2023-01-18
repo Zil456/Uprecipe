@@ -3,8 +3,6 @@ import Recipe from './Recipe';
 import '../App.css';
 
 export default function RecipeList({ recipeData }) {
-  // console.log('RecipeList below:');
-
   return (
     <div className='recipe-list'>
       <ul>

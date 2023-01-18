@@ -3,7 +3,6 @@ const API_URL = 'http://localhost:3020';
 export const fetchRecipes = async () => {
   try {
     const response = await fetch(API_URL + '/recipes');
-    // console.log(response);
     return response.json();
   } catch (error) {
     console.log(error);
